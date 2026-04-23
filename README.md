@@ -1,3 +1,7 @@
+![Unity](https://img.shields.io/badge/Unity-2D-black)
+![C#](https://img.shields.io/badge/C%23-Developer-blue)
+![Status](https://img.shields.io/badge/Status-Active-green)
+
 # 🎮 Platformer Unity – Série YouTube
 
 Projet Unity 2D utilisé comme support d’une série de tutoriels publiée régulièrement.
