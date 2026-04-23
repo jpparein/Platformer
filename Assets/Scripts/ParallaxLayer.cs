@@ -21,4 +21,5 @@ public class ParallaxLayer : MonoBehaviour
             transform.position.z
         );
     }
+    
 }

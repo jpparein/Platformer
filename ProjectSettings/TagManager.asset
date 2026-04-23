@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Coin
+  - Mace
+  - Spike
+  - Saw
+  - Water
+  - End
   layers:
   - Default
   - TransparentFX
