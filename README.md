@@ -2,7 +2,7 @@
 
 Projet Unity 2D utilisé comme support d’une série de tutoriels publiée régulièrement.
 
-![Aperçu du projet](images/preview.png)
+![Aperçu du projet](images_md/preview.png)
 
 ---
 
