@@ -73,19 +73,3 @@ Jean-Philippe Parein
 PSI – Parein Service Informatique
 
 
----
-
-## 🧩 Ressources (Assets)
-
-Les assets utilisés dans ce projet sont disponibles ici :
-
-👉 https://github.com/jpparein/Platformer-Assets
-
-### Installation
-
-1. Télécharger le dépôt des assets
-2. Copier les dossiers dans :
-   `Assets/` du projet Unity
-3. Laisser Unity réimporter automatiquement
-
----
