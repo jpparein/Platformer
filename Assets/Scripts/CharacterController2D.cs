@@ -12,7 +12,8 @@ public class CharacterController2D : MonoBehaviour
     private Animator animator;
     private SpriteRenderer sp;
     private bool isGrounded;
-    private Transform groundCheck; 
+    private Transform groundCheck;
+    private AudioSource audioSource;
 
     void Awake()
     {
@@ -20,14 +21,20 @@ public class CharacterController2D : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
-        groundCheck = transform.Find("GroundCheck");       
+        groundCheck = transform.Find("GroundCheck"); 
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnMove(InputValue value) => moveInput = value.Get<Vector2>();   
 
     void OnJump(InputValue value)
     {
-        if (value.isPressed && isGrounded) rb.linearVelocityY = jumpForce;
+        if (value.isPressed && isGrounded)
+        {
+            rb.linearVelocityY = jumpForce;
+            audioSource.Play();
+        }
+           
     }
     
     void Update()

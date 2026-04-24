@@ -10,16 +10,19 @@ public class Collisions : MonoBehaviour
     [SerializeField] private TMP_Text txtValue;
     [SerializeField] private Image imValue;
     [SerializeField] private ParticleSystem particle;
+    [SerializeField] private AudioClip sfxJump, sfxHit, sfxWater, sfxWin;
     private float life = 100;
 
     private CharacterController2D cc;
     private Vector2 startPosition;
+    private AudioSource audioSource;
 
 
     void Awake()
     {
         cc = GetComponent<CharacterController2D>();
         startPosition = transform.position;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -29,12 +32,15 @@ public class Collisions : MonoBehaviour
             Destroy(collision.gameObject);
             totalCoins++;
             txtCoin.text = "x" + totalCoins;
+            audioSource.PlayOneShot(sfxJump);
         }
 
         if (collision.gameObject.tag == "End")
         {
             GetComponent<PlayerInput>().enabled = false;
             particle.Play();
+            audioSource.PlayOneShot(sfxWin);
+            GameObject.Find("Music").GetComponent<AudioSource>().Stop();
         }
     }
 
@@ -44,6 +50,7 @@ public class Collisions : MonoBehaviour
         {
             ApplyHurt(25);
             transform.position = startPosition;
+            audioSource.PlayOneShot(sfxWater);
         }
     }
 
@@ -71,6 +78,7 @@ public class Collisions : MonoBehaviour
 
     void ApplyImpact(Collision2D collision)
     {
+        audioSource.PlayOneShot(sfxHit);
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         Vector2 direction = ((Vector2)transform.position - (Vector2)collision.transform.position).normalized;
         rb.linearVelocity = Vector2.zero;
