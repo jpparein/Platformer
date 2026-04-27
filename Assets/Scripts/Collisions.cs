@@ -10,7 +10,8 @@ public class Collisions : MonoBehaviour
     [SerializeField] private TMP_Text txtValue;
     [SerializeField] private Image imValue;
     [SerializeField] private ParticleSystem particle;
-    [SerializeField] private AudioClip sfxJump, sfxHit, sfxWater, sfxWin;
+    [SerializeField] private AudioClip sfxCoin, sfxHit, sfxWater, sfxWin, sfxGameOver;
+    [SerializeField] private GameObject panelGameOver, panelLevelComplete;
     private float life = 100;
 
     private CharacterController2D cc;
@@ -32,7 +33,7 @@ public class Collisions : MonoBehaviour
             Destroy(collision.gameObject);
             totalCoins++;
             txtCoin.text = "x" + totalCoins;
-            audioSource.PlayOneShot(sfxJump);
+            audioSource.PlayOneShot(sfxCoin);
         }
 
         if (collision.gameObject.tag == "End")
@@ -41,6 +42,7 @@ public class Collisions : MonoBehaviour
             particle.Play();
             audioSource.PlayOneShot(sfxWin);
             GameObject.Find("Music").GetComponent<AudioSource>().Stop();
+            panelLevelComplete.SetActive(true);
         }
     }
 
@@ -98,5 +100,14 @@ public class Collisions : MonoBehaviour
         life = Mathf.Clamp(life,0,100);
         txtValue.text = life + " %";
         imValue.fillAmount = life/100;
+
+        if (life == 0)
+        {
+            panelGameOver.SetActive(true);
+            GetComponent<PlayerInput>().enabled = false;
+            GetComponent<SpriteRenderer>().enabled = false;
+            audioSource.PlayOneShot(sfxGameOver);
+            GameObject.Find("Music").GetComponent<AudioSource>().Stop();
+        }
     }
 }
