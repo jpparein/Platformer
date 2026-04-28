@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ddfec4ebcacbd4bac7142f8015d627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectLevel
+  panelLevels: {fileID: 497449712}
 --- !u!82 &144206278
 AudioSource:
   m_ObjectHideFlags: 0

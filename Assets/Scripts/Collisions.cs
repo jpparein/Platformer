@@ -2,6 +2,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Unity.Collections;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Collisions : MonoBehaviour
 {
@@ -43,6 +46,7 @@ public class Collisions : MonoBehaviour
             audioSource.PlayOneShot(sfxWin);
             GameObject.Find("Music").GetComponent<AudioSource>().Stop();
             panelLevelComplete.SetActive(true);
+            OnLevelComplete();
         }
     }
 
@@ -108,6 +112,30 @@ public class Collisions : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = false;
             audioSource.PlayOneShot(sfxGameOver);
             GameObject.Find("Music").GetComponent<AudioSource>().Stop();
+            StartCoroutine(LoadSelectLevel());
         }
     }
+
+    IEnumerator LoadSelectLevel()
+    {
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene("SelectLevel");
+    }
+
+    void OnLevelComplete()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        string levelNumberText = sceneName.Replace("Level ", "");
+        int currentLevel = int.Parse(levelNumberText);
+        int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel", 1);
+
+        if (currentLevel >= unlockedLevel)
+        {
+            PlayerPrefs.SetInt("UnlockedLevel", currentLevel + 1);
+            PlayerPrefs.Save();
+        }
+
+        StartCoroutine(LoadSelectLevel());
+    }
+
 }
