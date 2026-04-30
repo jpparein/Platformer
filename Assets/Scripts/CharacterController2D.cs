@@ -3,8 +3,11 @@ using UnityEngine.InputSystem;
 
 public class CharacterController2D : MonoBehaviour
 {
+    [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 12f;
+
+    [Header("Ground Detection")]
     [SerializeField] private LayerMask lm;
 
     private Rigidbody2D rb;    

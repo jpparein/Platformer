@@ -2,24 +2,41 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using Unity.Collections;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEditorInternal;
+using DG.Tweening;
 
 public class Collisions : MonoBehaviour
 {
-    private int totalCoins = 0;
+
+    [Header("UI - Coin Counter")]
     [SerializeField] private TMP_Text txtCoin;
+
+    [Header("UI - Health Bar")]
     [SerializeField] private TMP_Text txtValue;
     [SerializeField] private Image imValue;
-    [SerializeField] private ParticleSystem particle;
-    [SerializeField] private AudioClip sfxCoin, sfxHit, sfxWater, sfxWin, sfxGameOver;
-    [SerializeField] private GameObject panelGameOver, panelLevelComplete;
-    private float life = 100;
 
+    [Header("Visual Effects")]
+    [SerializeField] private ParticleSystem particle;
+
+    [Header("Audio - Sound Effects")]
+    [SerializeField] private AudioClip sfxCoin;
+    [SerializeField] private AudioClip sfxHit;
+    [SerializeField] private AudioClip sfxWater;
+    [SerializeField] private AudioClip sfxWin;
+    [SerializeField] private AudioClip sfxGameOver;
+
+    [Header("UI Panels")]
+    [SerializeField] private GameObject panelGameOver;
+    [SerializeField] private GameObject panelLevelComplete;
+
+    private int totalCoins = 0;
+    private float life = 100;
     private CharacterController2D cc;
     private Vector2 startPosition;
     private AudioSource audioSource;
+    private SpriteRenderer spriteRenderer;
 
 
     void Awake()
@@ -27,6 +44,7 @@ public class Collisions : MonoBehaviour
         cc = GetComponent<CharacterController2D>();
         startPosition = transform.position;
         audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -37,6 +55,9 @@ public class Collisions : MonoBehaviour
             totalCoins++;
             txtCoin.text = "x" + totalCoins;
             audioSource.PlayOneShot(sfxCoin);
+
+            txtCoin.transform.DOScale(txtCoin.transform.localScale * 1.5f, 0.1f)
+                .SetLoops(2, LoopType.Yoyo);
         }
 
         if (collision.gameObject.tag == "End")
@@ -100,10 +121,16 @@ public class Collisions : MonoBehaviour
 
     void ApplyHurt(float value)
     {
+        spriteRenderer.DOKill();
+        spriteRenderer.DOFade(0.2f, 0.05f).
+            SetLoops(8, LoopType.Yoyo)
+            .OnComplete(() => spriteRenderer.color = Color.white);
+
         life -= value;
         life = Mathf.Clamp(life,0,100);
         txtValue.text = life + " %";
-        imValue.fillAmount = life/100;
+        //imValue.fillAmount = life/100;
+        imValue.DOFillAmount(life / 100, 0.25f);
 
         if (life == 0)
         {

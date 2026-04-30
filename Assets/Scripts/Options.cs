@@ -5,9 +5,14 @@ using UnityEngine.UI;
 
 public class Options : MonoBehaviour
 {
+    [Header("Audio Mixer")]
     [SerializeField] private AudioMixer audioMixer;
+
+    [Header("Volume Sliders")]
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
+
+    [Header("Pause Settings")]
     [SerializeField] private bool useEscapePause;
 
     private Animator animator;

@@ -593,6 +593,7 @@ GameObject:
   - component: {fileID: 258926083}
   - component: {fileID: 258926082}
   - component: {fileID: 258926085}
+  - component: {fileID: 258926086}
   m_Layer: 5
   m_Name: ButtonPlay
   m_TagString: Untagged
@@ -743,6 +744,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &258926086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258926080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e03c0d02e6ee2b4c82e03d2d7c66e83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonAnimation
+  hoverScale: 1.08
+  animationDuration: 0.15
 --- !u!1 &343431377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,6 +1112,7 @@ GameObject:
   - component: {fileID: 789225602}
   - component: {fileID: 789225601}
   - component: {fileID: 789225600}
+  - component: {fileID: 789225604}
   m_Layer: 5
   m_Name: ButtonOptions
   m_TagString: Untagged
@@ -1247,6 +1263,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789225598}
   m_CullTransparentMesh: 1
+--- !u!114 &789225604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789225598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e03c0d02e6ee2b4c82e03d2d7c66e83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonAnimation
+  hoverScale: 1.08
+  animationDuration: 0.15
 --- !u!1 &869714505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1632,6 +1662,7 @@ GameObject:
   - component: {fileID: 1332425260}
   - component: {fileID: 1332425259}
   - component: {fileID: 1332425258}
+  - component: {fileID: 1332425262}
   m_Layer: 5
   m_Name: ButtonExit
   m_TagString: Untagged
@@ -1782,6 +1813,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1332425256}
   m_CullTransparentMesh: 1
+--- !u!114 &1332425262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332425256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e03c0d02e6ee2b4c82e03d2d7c66e83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonAnimation
+  hoverScale: 1.08
+  animationDuration: 0.15
 --- !u!1 &1352547344
 GameObject:
   m_ObjectHideFlags: 0
