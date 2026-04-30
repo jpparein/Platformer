@@ -143,10 +143,14 @@ public class Collisions : MonoBehaviour
         }
     }
 
-    IEnumerator LoadSelectLevel()
+    IEnumerator LoadSelectLevel(bool victory = false)
     {
         yield return new WaitForSeconds(4f);
-        SceneManager.LoadScene("SelectLevel");
+
+        if(victory) 
+            SceneManager.LoadScene("Victory");
+        else
+            SceneManager.LoadScene("SelectLevel");
     }
 
     void OnLevelComplete()
@@ -162,7 +166,10 @@ public class Collisions : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        StartCoroutine(LoadSelectLevel());
+        if(currentLevel==10)
+            StartCoroutine(LoadSelectLevel(true));
+        else
+            StartCoroutine(LoadSelectLevel(false));
     }
 
 }
